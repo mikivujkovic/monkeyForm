@@ -1,3 +1,4 @@
+import LoginForm from "./components/LoginForm";
 import "./App.css";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
       <header className="App-header">
         <h1>Monkey Form</h1>
       </header>
+      <LoginForm />
     </div>
   );
 }
