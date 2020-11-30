@@ -1,14 +1,16 @@
 import LoginForm from "./components/LoginForm";
+import Header from "./components/Header";
+import { LanguageContextProvider } from "./state/LanguageContext";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Monkey Form</h1>
-      </header>
-      <LoginForm />
-    </div>
+    <LanguageContextProvider>
+      <div className="App">
+        <Header />
+        <LoginForm />
+      </div>
+    </LanguageContextProvider>
   );
 }
 
