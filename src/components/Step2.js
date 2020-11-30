@@ -17,7 +17,7 @@ const Step2 = (props) => {
 
   return (
     <>
-      <div>Step 2</div>
+      <div>{strings.secondStep[language]}</div>
       <input
         type="text"
         placeholder={strings.username[language]}

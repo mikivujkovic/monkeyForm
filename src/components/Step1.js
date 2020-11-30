@@ -12,7 +12,7 @@ const Step1 = (props) => {
 
   return (
     <>
-      <div>Step 1</div>
+      <div>{strings.firstStep[language]}</div>
       <input
         type="text"
         placeholder={strings.firstname[language]}

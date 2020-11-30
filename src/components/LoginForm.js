@@ -7,7 +7,6 @@ import formStateStart from "../data/formState";
 const LoginForm = () => {
   const [step, setStep] = useState(1);
   const [formState, setFormState] = useState(formStateStart);
-  const [language, setLanguage] = useState("en");
 
   const moveForward = () => {
     const prevStep = step;
@@ -34,7 +33,6 @@ const LoginForm = () => {
     case 1:
       return (
         <Step1
-          language={language}
           forward={moveForward}
           state={formState}
           handleChange={handleChange}
@@ -43,7 +41,6 @@ const LoginForm = () => {
     case 2:
       return (
         <Step2
-          language={language}
           forward={moveForward}
           back={moveBack}
           state={formState}

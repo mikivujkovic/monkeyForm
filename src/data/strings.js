@@ -31,6 +31,22 @@ const strings = {
     en: "confirm password",
     hr: "potvrdi zaporku",
   },
+  tryAgain: {
+    en: "try again",
+    hr: "pokusaj ponovo",
+  },
+  firstStep: {
+    en: "First Step",
+    hr: "Prvi korak",
+  },
+  secondStep: {
+    en: "Second Step",
+    hr: "Drugi korak",
+  },
+  finalStep: {
+    en: "Final Step",
+    hr: "Finalni korak",
+  },
 };
 
 export default strings;
