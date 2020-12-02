@@ -33,7 +33,7 @@ const LoginForm = () => {
   // start logging in from the beggining with clean state
   const backToStart = () => {
     // set form data to initial state - everything empty
-    setFormState(updatedState);
+    setFormState(formStateStart);
     // go back to first step
     setStep(1);
   };
