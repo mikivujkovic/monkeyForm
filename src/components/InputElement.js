@@ -1,7 +1,12 @@
+/* 
+  Generic input component to show label, input and errors
+*/
+
 import React from "react";
 import "../App.css";
 
 const InputElement = (props) => {
+  // destructure props to pass to child components
   const { label, type, placeholder, value, onChange, error } = props;
 
   return (

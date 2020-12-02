@@ -1,3 +1,10 @@
+/* 
+ localization strings used in UI elements
+ every string has values for all languages
+
+ strings will be used in format strings.something[language]
+*/
+
 const strings = {
   firstname: {
     en: "firstname",

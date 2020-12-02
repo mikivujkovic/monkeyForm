@@ -1,15 +1,23 @@
+/*
+  Final step to show the form values and to logout
+*/
+
 import React, { useContext } from "react";
 import strings from "../data/strings";
 import { LanguageContext } from "../state/LanguageContext";
 import "../App.css";
 
 const FinalStep = (props) => {
+  // handle logout button
   const handleTryAgain = () => {
+    // run tryAgain function passed from parent control - LoginForm
     props.tryAgain();
   };
 
+  // get language from Context
   const [language] = useContext(LanguageContext);
 
+  // string literal to output form data
   const output = `
   {
     fields: [

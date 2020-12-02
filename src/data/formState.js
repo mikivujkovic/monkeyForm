@@ -1,37 +1,4 @@
-// const formState = {
-//   fields: [
-//     {
-//       code: "fname",
-//       valueStr: "Miki",
-//       dataType: "string",
-//     },
-//     {
-//       code: "lname",
-//       valueStr: "",
-//       dataType: "string",
-//     },
-//     {
-//       code: "username",
-//       valueStr: "",
-//       dataType: "string",
-//     },
-//     {
-//       code: "email",
-//       valueStr: "",
-//       dataType: "string",
-//     },
-//     {
-//       code: "password",
-//       valueStr: "",
-//       dataType: "string",
-//     },
-//     {
-//       code: "password_confirm",
-//       valueStr: "",
-//       dataType: "string",
-//     },
-//   ],
-// };
+// initial state for form data
 
 const formState = {
   firstname: "",

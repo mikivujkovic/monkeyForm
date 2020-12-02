@@ -1,7 +1,12 @@
+/*
+  First step handling firstname and lastname 
+*/
+
 import React, { useContext, useState } from "react";
 import strings from "../data/strings";
 import { LanguageContext } from "../state/LanguageContext";
 import InputElement from "./InputElement";
+// import validation helpers
 import {
   validateRequired,
   validateMinLength,
@@ -9,70 +14,105 @@ import {
   validateLetters,
   validateMulti,
 } from "../utils/validation";
+// import loading spinner
 import Loader from "react-loader-spinner";
 
 const Step1 = (props) => {
+  // show the spinner and move to the next step
   const submitStep = () => {
     return new Promise(function (resolve, reject) {
+      // show the spinner
       setSpinnerLoading(true);
+      // wait two seconds
       setTimeout(resolve, 2000);
     }).then(function () {
+      // remove spinner
       setSpinnerLoading(false);
+      // move to the next step by calling function passed from the parent control
       props.forward();
     });
   };
 
+  // handle button for moving to next step
   const forwardStep = (e) => {
+    // prevent default form submission
     e.preventDefault();
+    // check firstname validity and show error if necessary
     const isFirstNameValid = validateFirstName(props.state.firstname);
-    const isLastNameValid = validateLastName(props.state.lastname);
-
     !isFirstNameValid && setFirstnameError(strings.firstNameError[language]);
+    // check lastname validity and show error if necessary
+    const isLastNameValid = validateLastName(props.state.lastname);
     !isLastNameValid && setLastnameError(strings.lastNameError[language]);
 
+    // if both fields are valid call submission function to move to the next step
     isFirstNameValid && isLastNameValid && submitStep();
   };
 
+  // Validate fiels
+
+  // validate firstname value
   const validateFirstName = (value) => {
+    // validator functions for firstname field
     const validators = [
-      validateRequired(value),
-      validateMinLength(value, 2),
-      validateMaxLength(value, 25),
+      validateRequired(value), // check for required field
+      validateMinLength(value, 2), // check min length
+      validateMaxLength(value, 25), // check max length
     ];
-    const isValid = validateMulti(validators);
+    const isValid = validateMulti(validators); // check if all validators return true
     return isValid;
   };
 
+  // validate lastname value
   const validateLastName = (value) => {
+    // validators for lastname
     const validators = [
-      validateLetters(value),
-      validateMinLength(value, 2),
-      validateMaxLength(value, 25),
+      validateLetters(value), // check if only letters are used
+      validateMinLength(value, 2), // check min length
+      validateMaxLength(value, 25), // check max length
     ];
-    const isValid = validateMulti(validators);
+    const isValid = validateMulti(validators); // check if all validators return true
     return isValid;
   };
 
+  // onChange handler functions
+
+  // firstname input change handler
   const onFirstNameChange = (e) => {
+    // send event to parent component to change form state for firstname
     props.handleChange("firstname")(e);
+    // check if firstname value is valid
     const isFirstNameValid = validateFirstName(e.target.value);
+    // if not valid set error message
     !isFirstNameValid && setFirstnameError(strings.firstNameError[language]);
+    // if valid clear error message
     isFirstNameValid && setFirstnameError("");
   };
 
+  // lastname inpit change handler
   const onLastNameChange = (e) => {
+    // send event to parent component to change form state for lastname
     props.handleChange("lastname")(e);
+    // check if lastname value is valid
     const isLastNameValid = validateLastName(e.target.value);
+    // if not valid set error message
     !isLastNameValid && setLastnameError(strings.lastNameError[language]);
+    // if valid clear error message
     isLastNameValid && setLastnameError("");
   };
 
+  // State hooks
+
+  // get language from Context
   const [language] = useContext(LanguageContext);
 
+  // state hooks for error messages
   const [firstnameError, setFirstnameError] = useState("");
   const [lastnameError, setLastnameError] = useState("");
+
+  // state hook to show the spinner
   const [spinnerLoading, setSpinnerLoading] = useState(false);
 
+  // show spinner or form control
   if (spinnerLoading) {
     return (
       <Loader
