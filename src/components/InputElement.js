@@ -1,18 +1,24 @@
 import React from "react";
+import "../App.css";
 
 const InputElement = (props) => {
   const { label, type, placeholder, value, onChange, error } = props;
 
   return (
     <>
-      <label>{label}</label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      ></input>
-      <p>{error}</p>
+      <div className="inputBackground">
+        <div className="inputRow">
+          <label className="inputLabel">{label}</label>
+          <input
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            className="inputStyle"
+          ></input>
+        </div>
+        <p className="inputError">{error}</p>
+      </div>
     </>
   );
 };

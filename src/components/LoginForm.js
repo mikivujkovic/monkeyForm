@@ -19,6 +19,15 @@ const LoginForm = () => {
   };
 
   const backToStart = () => {
+    const updatedState = {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
+    setFormState(updatedState);
     setStep(1);
   };
 
@@ -48,7 +57,7 @@ const LoginForm = () => {
         />
       );
     case 3:
-      return <FinalStep tryAgain={backToStart} />;
+      return <FinalStep tryAgain={backToStart} state={formState} />;
     default:
       return <Step1 />;
   }

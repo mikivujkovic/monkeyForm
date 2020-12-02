@@ -32,8 +32,8 @@ const strings = {
     hr: "potvrdi zaporku",
   },
   tryAgain: {
-    en: "try again",
-    hr: "pokusaj ponovo",
+    en: "Logout",
+    hr: "Odjavi se",
   },
   firstStep: {
     en: "First Step",
@@ -69,9 +69,9 @@ const strings = {
   },
   passwordError: {
     en:
-      "Password should have at least 8 characters including at least one special character and large letter",
+      "Password should have at least 8 characters including at least one special character, number and large letter",
     hr:
-      "Zaporka treba da ima bar 8 karaktera, od cega bar jedan specijalni karakter i veliko slovo",
+      "Zaporka treba da ima bar 8 karaktera, od cega bar jedan specijalni karakter, broj i veliko slovo",
   },
   confirmPasswordError: {
     en: "Confirm field should be equal to password",
@@ -80,6 +80,14 @@ const strings = {
   termsError: {
     en: "Please accept Terms and conditions",
     hr: "Molim Vas da prihvatite Uslove uporabe",
+  },
+  changeLanguage: {
+    en: "Change language:",
+    hr: "Promijeni jezik:",
+  },
+  successLogin: {
+    en: "You have successfuly logged in with following data:",
+    hr: "Uspjesno ste se prijavili sa sljedecim podacima:",
   },
 };
 

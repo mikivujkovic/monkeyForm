@@ -12,8 +12,19 @@ import {
   validateMulti,
 } from "../utils/validation";
 import "../App.css";
+import Loader from "react-loader-spinner";
 
 const Step2 = (props) => {
+  const submitStep = () => {
+    return new Promise(function (resolve, reject) {
+      setSpinnerLoading(true);
+      setTimeout(resolve, 2000);
+    }).then(function () {
+      setSpinnerLoading(false);
+      props.forward();
+    });
+  };
+
   const forwardStep = (e) => {
     e.preventDefault();
     const isUsernameValid = validateUsername(props.state.username);
@@ -34,7 +45,7 @@ const Step2 = (props) => {
       isPasswordValid &&
       isConfirmPasswordValid &&
       terms &&
-      props.forward();
+      submitStep();
   };
 
   const backStep = () => {
@@ -42,7 +53,6 @@ const Step2 = (props) => {
   };
 
   const validateUsername = (value) => {
-    // const value = props.state.username;
     const validators = [
       validateRequired(value),
       validateMinLength(value, 4),
@@ -53,7 +63,6 @@ const Step2 = (props) => {
   };
 
   const validateEmailField = (value) => {
-    //const value = props.state.email;
     const validators = [validateRequired(value), validateEmail(value)];
     const isValid = validateMulti(validators);
     return isValid;
@@ -117,79 +126,92 @@ const Step2 = (props) => {
     terms ? setTermsError(strings.termsError[language]) : setTermsError("");
   };
 
-  const handleShowTerms = () => {
-    showTerms ? setShowTerms(false) : setShowTerms(true);
-  };
-
   const [language] = useContext(LanguageContext);
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [terms, setTerms] = useState(false);
-  const [showTerms, setShowTerms] = useState(false);
   const [termsError, setTermsError] = useState("");
+  const [spinnerLoading, setSpinnerLoading] = useState(false);
 
-  return (
-    <>
-      <InputElement
-        type="text"
-        placeholder={strings.username[language]}
-        value={props.state.username}
-        onChange={onUsernameChange}
-        label={strings.username[language]}
-        error={usernameError && strings.usernameError[language]}
+  if (spinnerLoading) {
+    return (
+      <Loader
+        type="Grids"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        visible={spinnerLoading}
       />
-      <br />
-      <InputElement
-        type="email"
-        placeholder={strings.email[language]}
-        value={props.state.email}
-        onChange={onEmailChange}
-        label={strings.email[language]}
-        error={emailError && strings.emailError[language]}
-      />
-      <br />
-      <InputElement
-        type="password"
-        placeholder={strings.password[language]}
-        value={props.state.password}
-        onChange={onPasswordChange}
-        label={strings.password[language]}
-        error={passwordError && strings.passwordError[language]}
-      />
-      <br />
-      <InputElement
-        type="password"
-        placeholder={strings.confirmPassword[language]}
-        value={props.state.confirmPassword}
-        onChange={onConfirmPasswordChange}
-        label={strings.confirmPassword[language]}
-        error={confirmPasswordError && strings.confirmPasswordError[language]}
-      />
-      <br />
-      <input
-        name="terms"
-        type="checkbox"
-        checked={terms}
-        onChange={handleTerms}
-      />
-      <button onClick={handleShowTerms}>{strings.terms[language]}</button>
-      <p>{termsError && strings.termsError[language]}</p>
-      <div hidden={!showTerms} className="terms">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non
-        accumsan felis, vitae hendrerit nunc. Suspendisse et rutrum urna. Morbi
-        vitae velit molestie, fringilla orci a, dictum quam. Donec elementum, ex
-        sed ultricies placerat, nisl dui volutpat elit, at maximus leo sapien et
-        nunc. Donec ut quam pharetra, sollicitudin dolor nec, eleifend ipsum.
-        Phasellus sagittis mi purus, at dignissim tortor sollicitudin sed.
-        Aliquam non justo sagittis neque accumsan tempus.
-      </div>
-      <br />
-      <button onClick={backStep}>{strings.back[language]}</button>
-      <button onClick={forwardStep}>{strings.next[language]}</button>
-    </>
-  );
+    );
+  } else {
+    return (
+      <>
+        <div>{strings.secondStep[language]}</div>
+        <form noValidate className="formStyle">
+          <InputElement
+            type="text"
+            placeholder={strings.username[language]}
+            value={props.state.username}
+            onChange={onUsernameChange}
+            label={strings.username[language]}
+            error={usernameError && strings.usernameError[language]}
+          />
+          <br />
+          <hr className="hr" />
+          <InputElement
+            type="email"
+            placeholder={strings.email[language]}
+            value={props.state.email}
+            onChange={onEmailChange}
+            label={strings.email[language]}
+            error={emailError && strings.emailError[language]}
+          />
+          <br />
+          <hr className="hr" />
+          <InputElement
+            type="password"
+            placeholder={strings.password[language]}
+            value={props.state.password}
+            onChange={onPasswordChange}
+            label={strings.password[language]}
+            error={passwordError && strings.passwordError[language]}
+          />
+          <br />
+          <hr className="hr" />
+          <InputElement
+            type="password"
+            placeholder={strings.confirmPassword[language]}
+            value={props.state.confirmPassword}
+            onChange={onConfirmPasswordChange}
+            label={strings.confirmPassword[language]}
+            error={
+              confirmPasswordError && strings.confirmPasswordError[language]
+            }
+          />
+          <br />
+          <hr className="hr" />
+          <div className="inputRow">
+            <input
+              name="terms"
+              type="checkbox"
+              checked={terms}
+              onChange={handleTerms}
+            />
+
+            <div>{strings.terms[language]}</div>
+          </div>
+          <p className="inputError">
+            {termsError && strings.termsError[language]}
+          </p>
+          <br />
+          <button onClick={backStep}>{strings.back[language]}</button>
+          <button onClick={forwardStep}>{strings.next[language]}</button>
+        </form>
+      </>
+    );
+  }
 };
 
 export default Step2;

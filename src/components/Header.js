@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../state/LanguageContext";
+import strings from "../data/strings";
 import "../App.css";
 
 const Header = () => {
@@ -14,7 +15,7 @@ const Header = () => {
   return (
     <header className="App-header">
       <h1>Monkey Form</h1>
-      <h2>{language}</h2>
+      <span>{strings.changeLanguage[language]}</span>
       <button onClick={changeLanguage}>{buttonLanguage}</button>
       <br />
     </header>
