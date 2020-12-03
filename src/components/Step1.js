@@ -23,8 +23,8 @@ const Step1 = (props) => {
     return new Promise(function (resolve, reject) {
       // show the spinner
       setSpinnerLoading(true);
-      // wait two seconds
-      setTimeout(resolve, 2000);
+      // wait one second
+      setTimeout(resolve, 1000);
     }).then(function () {
       // remove spinner
       setSpinnerLoading(false);
@@ -116,11 +116,12 @@ const Step1 = (props) => {
   if (spinnerLoading) {
     return (
       <Loader
-        type="Grids"
+        type="Grid"
         color="#00BFFF"
         height={100}
         width={100}
         visible={spinnerLoading}
+        id="loader1"
       />
     );
   } else {
@@ -137,6 +138,7 @@ const Step1 = (props) => {
             error={firstnameError && strings.firstNameError[language]}
             disabled1={firstnameError}
             disabled2={!firstnameError}
+            id="firstname"
           />
           <br />
           <hr className="hr" />
@@ -149,6 +151,7 @@ const Step1 = (props) => {
             error={lastnameError && strings.lastNameError[language]}
             disabled1={lastnameError}
             disabled2={!lastnameError}
+            id="lastname"
           />
           <br />
           <hr className="hr" />

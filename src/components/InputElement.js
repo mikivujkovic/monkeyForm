@@ -13,8 +13,11 @@ const InputElement = (props) => {
     <>
       <div className="inputBackground">
         <div className="inputRow">
-          <label className="inputLabel">{label}</label>
+          <label className="inputLabel" htmlFor="formInput">
+            {label}
+          </label>
           <input
+            id="formInput"
             type={type}
             placeholder={placeholder}
             value={value}

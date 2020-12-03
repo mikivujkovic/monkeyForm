@@ -64,7 +64,9 @@ const FinalStep = (props) => {
         <div className="prettyPrint">
           <pre>{output}</pre>
         </div>
-        <button onClick={handleTryAgain}>{strings.tryAgain[language]}</button>
+        <button name="logout" onClick={handleTryAgain}>
+          {strings.tryAgain[language]}
+        </button>
       </div>
     </>
   );

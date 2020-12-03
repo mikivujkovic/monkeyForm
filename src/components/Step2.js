@@ -26,8 +26,8 @@ const Step2 = (props) => {
     return new Promise(function (resolve, reject) {
       // show the spinner
       setSpinnerLoading(true);
-      // wait for 2 seconds
-      setTimeout(resolve, 2000);
+      // wait for 1 second
+      setTimeout(resolve, 1000);
     }).then(function () {
       // remove the spinner
       setSpinnerLoading(false);
@@ -208,11 +208,12 @@ const Step2 = (props) => {
   if (spinnerLoading) {
     return (
       <Loader
-        type="Grids"
+        type="Grid"
         color="#00BFFF"
         height={100}
         width={100}
         visible={spinnerLoading}
+        id="loader2"
       />
     );
   } else {
@@ -227,6 +228,7 @@ const Step2 = (props) => {
             onChange={onUsernameChange}
             label={strings.username[language]}
             error={usernameError && strings.usernameError[language]}
+            id="username"
           />
           <br />
           <hr className="hr" />
@@ -237,6 +239,7 @@ const Step2 = (props) => {
             onChange={onEmailChange}
             label={strings.email[language]}
             error={emailError && strings.emailError[language]}
+            id="email"
           />
           <br />
           <hr className="hr" />
@@ -247,6 +250,7 @@ const Step2 = (props) => {
             onChange={onPasswordChange}
             label={strings.password[language]}
             error={passwordError && strings.passwordError[language]}
+            id="password"
           />
           <br />
           <hr className="hr" />
@@ -259,6 +263,7 @@ const Step2 = (props) => {
             error={
               confirmPasswordError && strings.confirmPasswordError[language]
             }
+            id="confirmPassword"
           />
           <br />
           <hr className="hr" />
@@ -268,6 +273,7 @@ const Step2 = (props) => {
               type="checkbox"
               checked={terms}
               onChange={handleTerms}
+              id="terms"
             />
 
             <div>{strings.terms[language]}</div>
