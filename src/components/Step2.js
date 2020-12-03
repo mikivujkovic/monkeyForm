@@ -3,6 +3,7 @@
 */
 
 import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
 import InputElement from "./InputElement";
 import strings from "../data/strings";
 import { LanguageContext } from "../state/LanguageContext";
@@ -288,6 +289,13 @@ const Step2 = (props) => {
       </>
     );
   }
+};
+
+Step2.propTypes = {
+  forward: PropTypes.func,
+  back: PropTypes.func,
+  state: PropTypes.object,
+  handleChange: PropTypes.func,
 };
 
 export default Step2;
